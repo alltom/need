@@ -21,9 +21,9 @@ How it works
 
 If multiple `Need`s arrive simultaneously with the same key, the callback for the first is called and its return value is passed to all the other callers.
 
-If a callback returns an error, the next callback is tried.
+If a callback returns an error, the next callback is tried. (The first caller gets the error.)
 
-By default, `need` has no memory. If other requests for a key arrive after the original request completes, the new callback will be called to provide the value. You can give `need` a memory by supplying a `MemoryProvider` (uses an in-memory `map`) or `RedisProvider` (uses redis, though it only works with strings).
+By default, `need` has no memory. If other requests for a key arrive after the original request completes, the new callback will be called to provide the value. You can give `need` a memory by supplying a `MemoryProvider` (uses an in-memory `map`) or `RedisProvider` (uses redis, though it panics for return values that aren't strings).
 
 What it doesn't do (TODO)
 -------------------------
